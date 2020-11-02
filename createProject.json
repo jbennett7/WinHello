@@ -1,0 +1,26 @@
+{
+    "name": "sample-windows-build-project",
+    "source": {
+        "type": "CODECOMMIT",
+        "location": "https://git-codecommit.us-east-1.amazonaws.com/v1/repos/WinHello",
+        "gitCloneDepth": 0,
+        "gitSubmodulesConfig": {
+            "fetchSubmodules": true
+        }
+    },
+    "artifacts": {
+        "type": "S3",
+        "location": "jbennettconsulting",
+        "path": "",
+        "namespaceType": "BUILD_ID",
+        "name": "windows-build-output-artifact.zip",
+        "packaging": "ZIP"
+    },
+    "environment": {
+        "type": "WINDOWS_SERVER_2019_CONTAINER",
+        "image": "mcr.microsoft.com/dotnet/framework/sdk:4.8",
+        "computeType": "BUILD_GENERAL1_MEDIUM"
+    },
+    "serviceRole": "arn:aws:iam::956263508642:role/{{ role-name }}",
+    "encryptionKey": "arn:aws:kms:us-east-1:956263508642:key/{{ key-ID }}"
+}
